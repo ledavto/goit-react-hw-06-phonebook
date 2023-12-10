@@ -1,5 +1,5 @@
 // import { Component } from 'react';
-import { nanoid } from 'nanoid';
+
 import { ContactForm } from './ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
@@ -33,28 +33,6 @@ export const App = () => {
       );
   }, [contacts]);
 
-  const addContacts = newCont => {
-    if (newCont.name) {
-      const contObj = { id: nanoid(), ...newCont };
-
-      //Массив имен из объекта
-      const arrName = [];
-      for (const contact of contacts) {
-        arrName.push(contact.name);
-      }
-
-      //Проверка на наличие уже такого имени
-      const arrNameLowerCase = arrName.map(elem => elem.toLowerCase());
-      if (arrNameLowerCase.includes(newCont.name.toLowerCase())) {
-        alert(`${newCont.name} is already in contacts`);
-        return;
-      }
-
-      setContacts([...contacts, contObj]);
-      console.log(contacts);
-    }
-  };
-
   const filterContacts = e => {
     setFilter(e);
   };
@@ -69,17 +47,11 @@ export const App = () => {
 
   return (
     <div className="container">
-      {/* <h1>Phonebook</h1>
-      <ContactForm addCont={addContacts} />
+      <h1>Phonebook</h1>
+      {/* <ContactForm /> */}
       <h2>Contacts</h2>
-      <Filter filterStr={filterContacts} />
-      {contacts.length > 0 && (
-        <ContactList
-          listCont={contacts}
-          filter={filter}
-          deleteCont={deleteCont}
-        />
-      )} */}
+      {/* <Filter filterStr={filterContacts} /> */}
+      {/* {contacts.length > 0 && <ContactList />} */}
     </div>
   );
 };

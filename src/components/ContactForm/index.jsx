@@ -1,30 +1,61 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 // import { Component } from 'react';
 
-export const ContactForm = ({ addCont }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export const ContactForm = () => {
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
+
+  const listContacts = useSelector(state => {
+    return state.contacts;
+  });
+
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     // console.log(e);
-    addCont({ name: name, number: number });
+    const contObj = {
+      id: nanoid(),
+      name: e.target.name.value,
+      number: e.target.number.value,
+    };
+
+    dispatch({ type: 'addUser', payload: contObj });
+    // console.log('listContacts', listContacts);
+
+    // if (newCont.name) {
+    // const contObj = { id: nanoid(), ...newCont };
+    //Массив имен из объекта
+    // const arrName = [];
+    // for (const contact of contacts) {
+    //   arrName.push(contact.name);
+    // }
+    //Проверка на наличие уже такого имени
+    // const arrNameLowerCase = arrName.map(elem => elem.toLowerCase());
+    // if (arrNameLowerCase.includes(newCont.name.toLowerCase())) {
+    //   alert(`${newCont.name} is already in contacts`);
+    //   return;
+    // }
+    // setContacts([...contacts, contObj]);
+    // }
 
     e.target.name.value = '';
     e.target.number.value = '';
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+    // switch (name) {
+    //   case 'name':
+    //     setName(value);
+    //     break;
+    //   case 'number':
+    //     setNumber(value);
+    //     break;
+    //   default:
+    //     return;
+    // }
   };
 
   return (

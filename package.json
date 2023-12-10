@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://ledavto.github.io/goit-react-hw-06-phonebook/",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^9.0.2",
