@@ -1,18 +1,8 @@
-// import { combineReducers } from "redux";
-import { configureStore} from "@reduxjs/toolkit";
+import { userReducer } from './user/userSlice';
+import { filterReducer } from './filter/filterSlice';
+import { combineReducers } from 'redux';
 
-// import { filterReducer } from "./filter/reducer";
-import { userReducer} from "./user/reducer";
-
-
-// export const reducer = combineReducers({
-//     user: userReducer,
-//     filter: filterReducer
-// })
-
-
-export const reducer = configureStore({
-    reducer: {
-    user: userReducer,
-    // filter: filterReducer
-},});
+export const reducer = combineReducers({
+  user: userReducer,
+  filter: filterReducer,
+});

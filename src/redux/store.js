@@ -1,22 +1,18 @@
-import {reducer} from './reducer';
+import { reducer } from './reducer';
 import { configureStore } from '@reduxjs/toolkit';
-// import { devToolsEnhancer } from '@redux-devtools/extension';
 
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-// Створюємо розширення стора, щоб додати інструменти розробника
-// const enhancer = devToolsEnhancer();
-// export const store = createStore(reducer, enhancer);
+const persistConfig = {
+  key: 'phonebook',
+  storage,
+};
 
-export const store = configureStore({reducer});
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-// store.dispatch({ type: 'filterStr', payload: 'string' });
+export const store = configureStore({
+  reducer: persistedReducer,
+});
 
-// console.log(store.getState());
-
-// store.dispatch({ type: 'addUser', payload: 'Vasya' });
-
-// console.log(store.getState());
-
-//store.getState();
-
-//export const store = createStore(rootReducer);
+export const persistor = persistStore(store);

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { delUserAction } from '../../redux/user/reducer';
-// import { deleteContAction } from '../../redux/user/action';
+import { delUserAction } from '../../redux/user/userSlice';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -10,13 +9,13 @@ export const ContactList = () => {
   });
   // console.log('listCont', listCont);
 
-  // const filter = useSelector(state => {
-  //   return state.filter.filter;
-  // });
+  const filter = useSelector(state => {
+    // console.log(state);
+    return state.filter.filter;
+  });
 
   const deleteCont = id => {
     dispatch(delUserAction(id));
-    // dispatch({ type: 'delUser', payload: id });
   };
 
   return (

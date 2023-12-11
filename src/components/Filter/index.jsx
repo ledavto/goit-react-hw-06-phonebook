@@ -1,4 +1,13 @@
-export const Filter = ({ filterStr }) => {
+import { useDispatch } from 'react-redux';
+import { filterStrAction } from '../../redux/filter/filterSlice';
+
+export const Filter = () => {
+  const dispatch = useDispatch();
+
+  const changeFilter = e => {
+    dispatch(filterStrAction(e.target.value));
+  };
+
   return (
     <div className="mb-3">
       <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -8,7 +17,7 @@ export const Filter = ({ filterStr }) => {
           name="filter"
           className="form-control"
           id="exampleFormControlInput1"
-          onChange={event => filterStr(event.target.value)}
+          onChange={changeFilter}
         />
       </label>
     </div>
